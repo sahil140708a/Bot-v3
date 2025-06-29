@@ -325,18 +325,6 @@ async def process_msg(c, u, m, d, lt, uid, i):
                     await c.send_document(tcid, document=f, caption=ft if m.caption else None, 
                                         progress=prog, progress_args=(c, d, p.id, st), 
                                         reply_to_message_id=rtmid)
-                    # Updated PDF handling logic
-if message.document:
-    file_name = message.document.file_name or "downloaded_file.pdf"
-    if file_name.lower().endswith('.pdf') or message.document.mime_type == "application/pdf":
-        file = await bot.download_media(message.document)
-        with open(file_name, "wb") as f:
-            f.write(file.read())
-        await message.reply("✅ PDF saved successfully!")
-            except Exception as e:
-                await c.edit_message_text(d, p.id, f'Upload failed: {str(e)[:30]}')
-                if os.path.exists(f): os.remove(f)
-                return 'Failed.'
             
             os.remove(f)
             await c.delete_messages(d, p.id)
