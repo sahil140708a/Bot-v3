@@ -90,7 +90,7 @@ def get_dummy_filename(info):
     extension = {
         "video": "mp4",
         "photo": "jpg",
-        "document": "pdf",
+        "document": ".pdf",
         "audio": "mp3"
     }.get(file_type, "bin")
     
